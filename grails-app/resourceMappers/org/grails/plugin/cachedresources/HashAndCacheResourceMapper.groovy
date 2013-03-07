@@ -74,6 +74,10 @@ class HashAndCacheResourceMapper {
         def parent = flattenDirs ? resourceService.workDir : input.parentFile
         def target = new File(parent, extension ? "${newName}.${extension}" : newName)
 
+        if (input == target) {
+            return target
+        }
+
         if (target.exists()) {
             assert target.delete()
         }
